@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chinese Painting to Music Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wav-encoder@1.5.0/build/wav-encoder.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!--bg scroll-->
+<div class="bg-scroll"></div>
+
+<!--Loop Music -->
+
+<audio id="bianzhongloop1" src="Instrument/BIAN ZHONG/loops/bian zhong_01.wav"></audio>
+<audio id="bianzhongloop2" src="Instrument/BIAN ZHONG/loops/bian zhong_02.wav"></audio>
+<audio id="diziloop1" src="Instrument/DI ZI/loops/di zi_06.wav"></audio>
+<audio id="diziloop2" src="Instrument/DI ZI/loops/di zi_02.wav"></audio>
+<audio id="guqinloop1" src="Instrument/GU QIN/loops/gu qin_01.wav"></audio>
+<audio id="guqinloop2" src="Instrument/GU QIN/loops/gu qin_02.wav"></audio>
+<audio id="pipaloop1" src="Instrument/PI PA/loops/pi pa_03.wav"></audio>
+<audio id="pipaloop2" src="Instrument/PI PA/loops/pi pa_02.wav"></audio>
+<audio id="shengloop1" src="Instrument/SHENG/loops/sheng_01.wav"></audio>
+<audio id="shengloop2" src="Instrument/SHENG/loops/sheng_02.wav"></audio>
+<audio id="zhengloop1" src="Instrument/ZHENG/loops/zheng_01.wav"></audio>
+<audio id="zhengloop2" src="Instrument/ZHENG/loops/zheng_02.wav"></audio>
+
+
+<!--  Nav bar-->
+<nav class="navbar navbar-expand navbar-dark " id="navbar" style="font-family: Georgia,serif">
+
+    <div class="container-fluid">
+        <div class="volume-control d-flex align-items-center gap-3">
+            <button id="mute-btn" class="btn btn-sm btn-outline-light" style="margin-left:20px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                     class="bi bi-mic-fill" viewBox="0 0 16 16">
+                    <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z" />
+                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
+                </svg>
+            </button>
+
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" class="form-range"
+                   style="width: 150px;margin-left:10px">
+        </div>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" data-target="home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="about">ABOUT</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div id="page-content">
+    <!-- 1.HomePage -->
+    <div class="page-section" id="home" style="font-family: Georgia,serif">
+
+        <!-- bg content -->
+
+        <div id="container">
+            <div class="image-column" id="right-images">
+                <div class="image-wrapper">
+                    <div class="img-container">
+                        <img src="./images/山峰.png" data-name="山峰" draggable="true" style="padding-top: 2px"/>
+                        <span><img
+                                src="./images/question_icon.svg"
+                                class="info-icon"
+                                alt="?"
+                                data-bs-toggle="popover"
+                                data-bs-placement="right"
+                                data-wiki="Bianzhong"
+                                draggable="false"
+                                style="cursor: default;filter: grayscale(100%) brightness(0.65); opacity: 0.9"
+
+                        /></span>
+
+                    </div>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="img-container">
+                        <img src="./images/小船.png" data-name="小船" draggable="true" />
+                        <span><img
+                                src="./images/question_icon.svg"
+                                class="info-icon"
+                                alt="?"
+                                data-bs-toggle="popover"
+                                data-bs-placement="right"
+                                data-wiki="Dizi (instrument)"
+                                draggable="false"
+                                style="cursor: default;"
+
+                        /></span>
+                    </div>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="img-container" style="padding: 2px">
+                        <img src="./images/花树.png" data-name="花树" draggable="true" />
+                        <span><img
+                                src="./images/question_icon.svg"
+                                class="info-icon"
+                                alt="?"
+                                data-bs-toggle="popover"
+                                data-bs-placement="right"
+                                data-wiki="Guqin"
+                                draggable="false"
+                                style="cursor: default;"
+
+                        /></span>
+                    </div>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="img-container" >
+                        <img src="./images/松树.png" data-name="松树" draggable="true" style="padding: 2px" />
+                        <span><img
+                            src="./images/question_icon.svg"
+                            class="info-icon"
+                            alt="?"
+                            data-bs-toggle="popover"
+                            data-bs-placement="right"
+                            data-wiki="Pipa"
+                            draggable="false"
+                            style="cursor: default;"
+
+                    /></span></div>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="img-container" style="padding: 2px">
+                        <img src="./images/竹子.png" data-name="竹子" draggable="true" />
+                        <span><img
+                                src="./images/question_icon.svg"
+                                class="info-icon"
+                                alt="?"
+                                data-bs-toggle="popover"
+                                data-bs-placement="right"
+                                data-wiki="Sheng (instrument)"
+                                draggable="false"
+                                style="cursor: default;"
+                        /></span></div>
+                </div>
+
+                <div class="image-wrapper">
+                    <div class="img-container" >
+                        <img src="./images/水中亭.png" data-name="水中亭" draggable="true" />
+                        <span><img
+                                src="./images/question_icon.svg"
+                                class="info-icon"
+                                alt="?"
+                                data-bs-toggle="popover"
+                                data-bs-placement="right"
+                                data-wiki="Guzheng"
+                                draggable="false"
+                                style="cursor: default;"
+                        /></span></div>
+                </div>
+
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="myCanvas"></canvas>
+            </div>
+            <div class="tools-wrapper">
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <div class="tool-placeholder"></div>
+                <button title="放大" id ='zoomIn' class="tool-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                    </svg>
+                </button>
+
+                <button title="缩小" id="zoomOut" class="tool-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                    </svg>
+                </button>
+
+                <button title="撤回"  id="undo" class="tool-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                        <path
+                                d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                    </svg>
+                </button>
+
+                <button title="删除" id ='delete' class="tool-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-trash" viewBox="0 0 16 16">
+                        <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                <button id="clear" class="tool-btn" title="全局清空">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dc3545"
+                         class="bi bi-x-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1
+         .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707
+         5.354 11.354a.5.5 0 1 1-.708-.708L7.293 8 4.646 5.354a.5.5
+         0 0 1 0-.708"/>
+                    </svg>
+                </button>
+
+                </button>
+
+        </div>
+        </div>
+
+        <div class = 'button-wrapper'>
+
+        <div id="button" class="d-flex justify-content-center gap-5">
+            <button class="btn btn-dark shadow" id="downloadCanvas">DOWNLOAD CANVAS</button>
+            <button class="btn btn-dark shadow" id="compose"> COMPOSE MUSIC</button>
+            <button class="btn btn-dark shadow" id="download">DOWNLOAD MUSIC</button>
+
+        </div>
+            </div>
+
+    </div>
+
+<!--   wiki popup float -->
+    <div id="wiki-popup-float" style="display: none;"></div>
+
+<!--2. AboutPage-->
+    <div class="page-section" id="about" style="display: none;font-family: Georgia,serif">
+
+        <div>
+            <div id="bginfo" style="background-color: rgba(255, 255, 255, 0.7);padding:20px;border-radius: 15px;
+             backdrop-filter: blur(5px);margin-left:100px; margin-right:100px;margin-top:30px;line-height: 30px; ">
+                <h3><strong>About Project</strong></h3>
+                <p style="text-align: justify;text-indent: 5px;">
+
+                    <br> This project is designed to help users relax and unwind. Our goal is to naturally combine
+                    the
+                    beauty of traditional Chinese painting and music, creating a calming and culturally immersive
+                    experience. The project is inspired by the famous Chinese painting<strong><i> A Thousand Li of
+                    Rivers
+                    and Mountains</i></strong>. Through interactive elements, users can explore and engage
+                    with
+                    the scenery
+                    and sounds, experiencing the charm of classical Chinese aesthetics.
+                    <br><br> There is a moving story behind this masterpiece. Its creator, <strong><i>Wang
+                    Ximeng</i></strong>, was a brilliant teenage artist in the late Northern Song Dynasty.
+                    At
+                    just 18 years
+                    old, he completed A Thousand Li of Rivers and Mountains, the only known work he left behind in
+                    his
+                    short
+                    life. Remarkably, with just this one painting, he secured a lasting place in the history of
+                    Chinese
+                    art.
+                    <br><br> The painting is in the form of a long handscroll, depicting endless mountains and vast
+                    rivers.
+                    Throughout the landscape, the artist delicately adds pavilions, bridges, villages, ferries,
+                    travelers,
+                    fishing scenes, and flying birds, by which capturing a lively and detailed portrayal of life in
+                    nature.
+                    In its style, the painting blends characteristics of both the southern and northern schools of
+                    Chinese
+                    landscape art. In terms of color, it follows the blue-and-green painting tradition that dates
+                    back
+                    to
+                    the Tang Dynasty. The use of ochre enhances the vividness of the mineral pigments, especially
+                    azurite
+                    and malachite, making the scenery more striking and vibrant.
+                    <br><br> It is both a realistic depiction of the natural world and an idealized expression of
+                    beauty
+                    and
+                    harmony. Today, the painting is housed in the Palace Museum in Beijing and is regarded as a
+                    treasure
+                    of
+                    Chinese art. In recent years, it has once again drawn public attention and become a cultural
+                    symbol
+                    in
+                    the revival of traditional Chinese aesthetics.
+                    <br>
+
+
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <div id="Musicinfo" style="background-color: rgba(255, 255, 255, 0.7);padding:20px;border-radius: 15px;
+             backdrop-filter: blur(5px);margin-left:100px; margin-right:100px;margin-top:30px;line-height: 30px; ">
+                <h3><strong>About Music</strong></h3>
+
+                <p style="text-align: justify;text-indent: 5px;">
+
+                    <br>Traditional Chinese music is an essential part of China's rich cultural heritage, with a history spanning thousands of years. Unlike Western music, which often focuses on harmony, Chinese music emphasizes melody and the expression of emotion through individual notes and tones. It is deeply connected to nature, philosophy, and poetry.<br>
+
+                    <br>In this project, you’ll find examples of iconic instruments such as the bianzhong (ancient bronze bells), dizi (bamboo flute), guzheng (plucked zither), sheng (mouth-blown free reed), guqin (seven-stringed zither), and pipa (pear-shaped lute). Each of these instruments tells its own story and reflects the spirit of Chinese aesthetics<br>
+                    <br>Traditional Chinese music is not only meant to entertain but also to cultivate the spirit and promote harmony between people and the natural world. Whether performed solo or in ensembles, it invites listeners into a tranquil, poetic soundscape that reflects the soul of Chinese culture.<br>
+                    <br><Strong>Interested in traditional Chinese music? Use the box below to explore more on Wikipedia.</Strong>
+
+                    <br>
+                </p>
+
+                <div style="margin-top: 10px;">
+                <input type="text" id="searchInput" placeholder="Enter a keyword...">
+                <button onclick="searchWikipedia()">Search</button>
+            </div>
+
+            <div id="resultContainer"></div>
+            </div>
+        </div>
+        <div>
+            <div id="usinfo" style="background-color: rgba(255, 255, 255, 0.7);padding:20px;border-radius: 15px;
+             backdrop-filter: blur(5px);margin-left:100px; margin-right:100px;margin-top:30px;line-height: 30px; ">
+                <h3><strong>About US</strong></h3>
+                <p style="text-align: justify;text-indent: 5px;">
+
+                    <br>
+                    We have a deep appreciation for traditional Chinese culture and believe that the sharing of art
+                    can
+                    transcend language and borders. Through this project, we hope to offer you a relaxing and
+                    heartfelt
+                    immersive experience—and perhaps, within the scroll and the music, help you feel a glimpse of
+                    the
+                    beauty
+                    of the East.
+                    Last but not least, we sincerely hope that this small project can share the beauty we see with
+                    many
+                    more
+                    people.
+                    <br><br>
+                <p><strong>Project Contributors:</strong></p>
+
+                <p>zhao</p>
+                <p>zhang</p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text">
+    <p style="font-family: Georgia, serif"><strong>Chinese Painting to Music Converter</strong></p>
+    <p id="textchinese" style=" font-family: 'Ma Shan Zheng';">丹青化韵</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="js/app.js"></script>
+</body>
+
+</html>
