@@ -4,6 +4,32 @@
 
 > **仅限非商业使用。** 允许学习、研究和个人实验，禁止未经授权的商业用途，详见 [LICENSE](LICENSE)。
 
+## 界面展示
+
+### 1. 首页
+
+![首页](docs/screenshots/01-home.png)
+
+### 2. 创作界面
+
+![创作界面](docs/screenshots/02-canvas.png)
+
+### 3. 山水画创作示例
+
+![山水画创作示例](docs/screenshots/03-painting.png)
+
+### 4. 音乐生成中
+
+![音乐生成中](docs/screenshots/04-generating.png)
+
+### 5. 音乐播放
+
+![音乐播放](docs/screenshots/05-playback.png)
+
+### 6. 传统乐器文化介绍
+
+![传统乐器文化介绍](docs/screenshots/06-culture.png)
+
 ## 功能
 
 - **绘画创作**：拖拽图案，自由调整布局，支持撤销和清空。
@@ -21,7 +47,7 @@ git clone https://github.com/zhaoshutiao/danqing-music.git
 cd danqing-music
 ```
 
-也可以通过 **Code → Download ZIP** 下载并解压。私有仓库需要相应访问权限。
+也可以通过 **Code → Download ZIP** 下载并解压。
 
 ### 2. 配置密钥
 
